@@ -21,8 +21,8 @@ class Form extends Component {
 
     formSubmitHandler = (event) => {
         this.setState({isLoading: true});
-        firebase.database().ref('/code/'+this.state.code+'/'+this.state.username+'/').once('value')
-            .then((snapshot) => {
+        firebase.database().ref('/code/'+this.state.code+'/'+this.state.username.toLowerCase()+'/')
+            .once('value').then((snapshot) => {
                 this.setState({isLoading: false});
                 if (snapshot.val() === null) {
                     swal({
