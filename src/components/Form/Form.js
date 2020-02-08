@@ -25,9 +25,19 @@ class Form extends Component {
             .then((snapshot) => {
                 this.setState({isLoading: false});
                 if (snapshot.val() === null) {
-                    swal("Wrong...");
+                    swal({
+                        title: "You are so wrong.. ",
+                        text: "Better Luck Next Time",
+                        icon: "error",
+                        button: "Try Again",
+                    });
                 }else{
-                    swal(snapshot.val().hint);
+                    swal({
+                        title: "You Cracked the Code !!",
+                        text: snapshot.val().hint,
+                        icon: "success",
+                        button: "Let's Go",
+                    });
                 }
             }).catch(e => console.log(e.code));
         event.preventDefault();
