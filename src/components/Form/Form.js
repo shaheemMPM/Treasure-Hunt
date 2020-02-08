@@ -5,6 +5,7 @@ import './Form.css';
 
 import TextField from '../TextField/TextField';
 import Button from '../Button/Button';
+import Loading from '../Loading/Loading';
 
 import fireConfig from '../../config/firebase.config';
 
@@ -14,13 +15,15 @@ class Form extends Component {
     state = { 
         username: '',
         code: '',
-        data: ''
+        data: '',
+        isLoading: false
      }
 
     formSubmitHandler = (event) => {
+        this.setState({isLoading: true});
         firebase.database().ref('/code/'+this.state.code+'/'+this.state.username+'/').once('value')
             .then((snapshot) => {
-                console.log(snapshot.val());
+                this.setState({isLoading: false});
                 if (snapshot.val() === null) {
                     swal("Wrong...");
                 }else{
@@ -40,17 +43,19 @@ class Form extends Component {
 
     render() { 
         return ( 
-            this.state.data !== null ? 
-            <form className="Form">
-                <h2>Hunt the Hint</h2>
-                <TextField type="text" placeholder="user name" textChanged={this.nameChangedHandler}/>
-                <TextField type="password" placeholder="code" textChanged={this.codeChangedHandler}/>
-                <Button content="Let's Go" clicked={this.formSubmitHandler}/>
-            </form>  
-            : 
-            <form className="Form">
-                <h2>Hint!!</h2>
-            </form>
+            !this.state.isLoading ?
+                this.state.data !== null ? 
+                <form className="Form">
+                    <h2>Hunt the Hint</h2>
+                    <TextField type="text" placeholder="user name" textChanged={this.nameChangedHandler}/>
+                    <TextField type="password" placeholder="code" textChanged={this.codeChangedHandler}/>
+                    <Button content="Let's Go" clicked={this.formSubmitHandler}/>
+                </form>  
+                : 
+                <form className="Form">
+                    <h2>Hint!!</h2>
+                </form>
+            : <Loading />
         );
     }
 }
