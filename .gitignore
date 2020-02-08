@@ -10,7 +10,7 @@
 /build
 
 # security
-/config
+*/config
 
 # misc
 .DS_Store
