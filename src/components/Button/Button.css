@@ -1,0 +1,12 @@
+.Button {
+    width: 454px;
+    margin-left: 25px;
+    color: white;
+    background: rgb(183, 0, 43);
+    font-size: 16px;
+    margin-top: 40px;
+}
+
+.Button:hover {
+    font-weight: bolder;
+}
