@@ -39,7 +39,17 @@ class Form extends Component {
                         button: "Let's Go",
                     });
                 }
-            }).catch(e => console.log(e.code));
+            }).catch(e => {
+                this.setState({isLoading: false});
+                if(e.code === "PERMISSION_DENIED"){
+                    swal({
+                        title: "Smart Play !!",
+                        text: "But not smart enough to crack my code.😎",
+                        icon: "warning",
+                        button: "Be Smarter",
+                    });
+                }
+            });
         event.preventDefault();
     }
 

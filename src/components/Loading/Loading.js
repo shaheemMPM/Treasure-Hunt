@@ -3,7 +3,7 @@ import { WindMillLoading } from 'react-loadingg';
 
 const Loading = (props) => {
     return ( 
-        <WindMillLoading color="#b7002b" size="large"/>
+        <WindMillLoading color="#3B0D00" size="large"/>
     );
 }
  
