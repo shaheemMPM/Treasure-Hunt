@@ -9,6 +9,17 @@
     padding-top: 30px;
 }
 
+@media screen and (max-width: 480px){
+    .Form {
+        width: 80%;
+        height: 400px;
+    }
+
+    .Form h2 {
+        margin-bottom: 20px !important;
+    }
+}
+
 .Form h2 {
     text-align: center;
     color: #3B0D00;
