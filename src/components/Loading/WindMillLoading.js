@@ -24,54 +24,54 @@ const bouncedelay = keyframes`
 
 const LoadingContainer = styled.div`
   height: 0;
-  width: 4px;
-  border-width: 0 4px ${props => props.size === 'small' ? 40 : (props.size === 'large' ? 60 : 50)}px 4px;
+  width: 12px;
+  border-width: 0 12px ${props => props.size === 'small' ? 40 : (props.size === 'large' ? 180 : 50)}px 12px;
   border-style: none solid solid;
   border-color: transparent transparent ${props => props.color || '#00adb5'};
   position: relative;
-  padding-top: 25px;
+  padding-top: 75px;
 `;
 
 const ItemFirst = styled.div`
   height: 0;
-  width: 2px;
-  border-width: ${props => props.size === 'small' ? 24 : (props.size === 'large' ? 40 : 30)}px 2px 0px 2px;
+  width: 6px;
+  border-width: ${props => props.size === 'small' ? 24 : (props.size === 'large' ? 120 : 30)}px 6px 0px 6px;
   border-style: solid solid none;
   border-color: ${props => props.color || '#00adb5'} transparent transparent;
-  transform-origin: 0 -2px;
+  transform-origin: 0 -6px;
   transform: rotate(60deg);
   position: absolute;
 `;
 
 const ItemSecord = styled.div`
   height: 0;
-  width: 2px;
-  border-width: ${props => props.size === 'small' ? 24 : (props.size === 'large' ? 40 : 30)}px 2px 0px 2px;
+  width: 6px;
+  border-width: ${props => props.size === 'small' ? 24 : (props.size === 'large' ? 120 : 30)}px 6px 0px 6px;
   border-style: solid solid none;
   border-color: ${props => props.color || '#00adb5'} transparent transparent;
-  transform-origin: 2px -1px;
+  transform-origin: 6px -3px;
   transform: rotate(180deg);
   position: absolute;
 `;
 
 const ItemThree = styled.div`
   height: 0;
-  width: 2px;
-  border-width: ${props => props.size === 'small' ? 24 : (props.size === 'large' ? 40 : 30)}px 2px 0px 2px;
+  width: 6px;
+  border-width: ${props => props.size === 'small' ? 24 : (props.size === 'large' ? 120 : 30)}px 6px 0px 6px;
   border-style: solid solid none;
   border-color: ${props => props.color || '#00adb5'} transparent transparent;
-  transform-origin: 5px 0;
+  transform-origin: 15px 0;
   transform: rotate(300deg);
   position: absolute;
 `;
 
 const Center = styled.div`
-  width: 4px;
-  height: 4px;
-  border: 3px ${props => props.color || '#00adb5'} solid;
+  width: 12px;
+  height: 12px;
+  border: 9px ${props => props.color || '#00adb5'} solid;
   background: #fff;
-  border-radius: 5px;
-  transform: translateX(-3px) translateY(-4px);
+  border-radius: 15px;
+  transform: translateX(-9px) translateY(-12px);
   position:absolute;
 `;
 
