@@ -15,7 +15,6 @@ class Form extends Component {
     state = { 
         username: '',
         code: '',
-        data: '',
         isLoading: false
      }
 
@@ -23,7 +22,7 @@ class Form extends Component {
         this.setState({isLoading: true});
         firebase.database().ref('/code/'+this.state.code+'/'+this.state.username.toLowerCase()+'/')
             .once('value').then((snapshot) => {
-                this.setState({isLoading: false});
+                this.setState({isLoading: false, code: '', username: ''});
                 if (snapshot.val() === null) {
                     swal({
                         title: "You are so wrong.. ",
@@ -40,7 +39,7 @@ class Form extends Component {
                     });
                 }
             }).catch(e => {
-                this.setState({isLoading: false});
+                this.setState({isLoading: false, code: '', username: ''});
                 if(e.code === "PERMISSION_DENIED"){
                     swal({
                         title: "Smart Play !!",
@@ -64,16 +63,11 @@ class Form extends Component {
     render() { 
         return ( 
             !this.state.isLoading ?
-                this.state.data !== null ? 
                 <form className="Form">
                     <h2>Hunt the Hint</h2>
                     <TextField type="text" placeholder="user name" textChanged={this.nameChangedHandler}/>
                     <TextField type="password" placeholder="code" textChanged={this.codeChangedHandler}/>
                     <Button content="Let's Go" clicked={this.formSubmitHandler}/>
-                </form>  
-                : 
-                <form className="Form">
-                    <h2>Hint!!</h2>
                 </form>
             : <Loading />
         );
