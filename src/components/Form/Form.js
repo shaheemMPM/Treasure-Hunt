@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import './Form.css';
 
 import TextField from '../TextField/TextField';
@@ -20,32 +20,33 @@ class Form extends Component {
 
     formSubmitHandler = (event) => {
         this.setState({isLoading: true});
-        firebase.database().ref('/code/'+this.state.code+'/'+this.state.username.toLowerCase()+'/')
+        let tempCode = this.state.code.split(" ").join("").toLowerCase();
+        firebase.database().ref('/code/'+tempCode+'/'+this.state.username.toLowerCase()+'/')
             .once('value').then((snapshot) => {
                 this.setState({isLoading: false, code: '', username: ''});
                 if (snapshot.val() === null) {
-                    swal({
+                    Swal.fire({
                         title: "You are so wrong.. ",
                         text: "Better Luck Next Time",
                         icon: "error",
-                        button: "Try Again",
+                        confirmButtonText: "Try Again",
                     });
                 }else{
-                    swal({
+                    Swal.fire({
                         title: "You Cracked the Code !!",
-                        text: snapshot.val().hint,
+                        html: snapshot.val().hint,
                         icon: "success",
-                        button: "Let's Go",
+                        confirmButtonText: "Let's Go",
                     });
                 }
             }).catch(e => {
                 this.setState({isLoading: false, code: '', username: ''});
                 if(e.code === "PERMISSION_DENIED"){
-                    swal({
+                    Swal.fire({
                         title: "Smart Play !!",
                         text: "But not smart enough to crack my code.😎",
                         icon: "warning",
-                        button: "Be Smarter",
+                        confirmButtonText: "Be Smarter",
                     });
                 }
             });
@@ -66,7 +67,7 @@ class Form extends Component {
                 <form className="Form">
                     <h2>Hunt the Hint</h2>
                     <TextField type="text" placeholder="user name" textChanged={this.nameChangedHandler}/>
-                    <TextField type="password" placeholder="code" textChanged={this.codeChangedHandler}/>
+                    <TextField type="text" placeholder="code" textChanged={this.codeChangedHandler}/>
                     <Button content="Let's Go" clicked={this.formSubmitHandler}/>
                 </form>
             : <Loading />
